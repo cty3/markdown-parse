@@ -11,7 +11,31 @@ public class MarkdownParseTest {
         assertEquals(2, 1 + 1);
     }
     @Test
-    public void testGetLinks() throws IOException{
+    public void testGetLinks1() throws IOException{
+        Path fileName = Path.of("test-file.md");
+	    String contents = Files.readString(fileName);
+        boolean exceptionThrown = false;
+        try{
+            MarkdownParse.getLinks(contents);
+        }catch(IOException e){
+            exceptionThrown = true;
+        }
+        assertTrue("IOException not thrown for test-file.md", exceptionThrown);
+    }
+    @Test
+    public void testGetLinks2() throws IOException{
+        Path fileName = Path.of("test-file-2.md");
+	    String contents = Files.readString(fileName);
+        assertEquals(MarkdownParse.getLinks(contents), List.of("https://something.com", "some-page.html", "hello"));
+    }
+    @Test
+    public void testGetLinks3() throws IOException{
+        Path fileName = Path.of("test-file-2.md");
+	    String contents = Files.readString(fileName);
+        assertEquals(MarkdownParse.getLinks(contents), List.of("https://something.com", "some-page.html", "hello"));
+    }
+    @Test
+    public void testGetLinks4() throws IOException{
         Path fileName = Path.of("test-file-2.md");
 	    String contents = Files.readString(fileName);
         assertEquals(MarkdownParse.getLinks(contents), List.of("https://something.com", "some-page.html", "hello"));
