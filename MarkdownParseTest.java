@@ -32,6 +32,21 @@ public class MarkdownParseTest {
         assertEquals(MarkdownParse.getLinks(contents), List.of("a link on the first line"));
     }
 
+    @Test
+    public void testSnippet1() throws IOException {
+        Path filename = Path.of("snippet1.md");
+        String contents = Files.readString(filename);
+        assertEquals(List.of("url.com", "`google.com", "google.com", "ucsd.edu"), MarkdownParse.getLinks(contents));
+    }
+
+    @Test
+    public void testSnippet3() throws IOException {
+        Path filename = Path.of("snippet3.md");
+        String contents = Files.readString(filename);
+        assertEquals(List.of("https://ucsd-cse15l-w22.github.io/"), MarkdownParse.getLinks(contents));
+    }
+
+
     /*
     @Test
     public void testGetLinks() {

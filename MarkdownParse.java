@@ -22,7 +22,7 @@ public class MarkdownParse {
             }
 
             //checks for brackets and parentheses with stuff between them, and empty links
-            if (nextCloseBracket + 1 == openParen && openParen + 1 != closeParen) {
+            if (markdown.charAt(openParen-1)==']' && openParen + 1 != closeParen) {
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
             }
             
