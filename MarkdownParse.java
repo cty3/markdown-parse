@@ -23,6 +23,10 @@ public class MarkdownParse {
             if(lastDot == -1 || !p.toString().substring(lastDot).equals(".md")) {
                 return result;
             }
+            String contents = Files.readString(p);
+            if(contents.contains("(")&&contents.contains(")")&&contents.contains("[")&&contents.contains("]")){
+                System.out.println(p.toString());
+            }
             ArrayList<String> links = getLinks(Files.readString(p));
             result.put(dirOrFile.getPath(), links);
             return result;
@@ -60,11 +64,15 @@ public class MarkdownParse {
             Path fileName = Path.of(args[0]);
 	        String contents = Files.readString(fileName);
             ArrayList<String> links = getLinks(contents);
+            /*
             System.out.println(links);
+            */
         }
         else{
             Map<String, List<String>> links = getLinks(new File(args[0]));
+            /*
             System.out.println(links);
+            */
         }
     }
 }
